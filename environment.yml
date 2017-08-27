@@ -1,0 +1,7 @@
+name: conx-example
+dependencies:
+  - python=3.6
+  - pip:
+    - connexion>=1.0.31
+    - gevent>=1.1b1
+    # - attrs==17.2.0
