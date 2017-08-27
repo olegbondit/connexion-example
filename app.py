@@ -40,6 +40,15 @@ def delete_pet(pet_id):
         return NoContent, 404
 
 
+
+
+def get_bond(bondit_id):
+    res = {'bondit_id': bondit_id, 'isin': 'US1023456789', 'price': 101.1}
+    return res
+
+
+
+
 logging.basicConfig(level=logging.INFO)
 app = connexion.App(__name__)
 app.add_api('swagger.yaml')

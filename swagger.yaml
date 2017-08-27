@@ -73,7 +73,20 @@ paths:
           description: Pet was deleted
         404:
           description: Pet does not exist
-
+  /bonds/{bondit_id}:
+    get:
+      tags: [Bonds]
+      operationId: app.get_bond
+      summary: Get a single bond
+      parameters:
+        - $ref: '#/parameters/pet_id'
+      responses:
+        200:
+          description: Return pet
+          schema:
+            $ref: '#/definitions/Pet'
+        404:
+          description: Pet does not exist
 
 parameters:
   pet_id:
@@ -83,6 +96,14 @@ parameters:
     type: string
     required: true
     pattern: "^[a-zA-Z0-9-]+$"
+  bondit_id:
+    name: bondit_id
+    description: Bondit id
+    in: path
+    type: integer
+    required: true
+    pattern: "[0-9]"
+
 
 definitions:
   Pet:
@@ -116,7 +137,30 @@ definitions:
         description: Creation time
         example: "2015-07-07T15:49:51.230+02:00"
         readOnly: true
-
+  Bond:
+    type: object
+    required:
+      - bondit_id
+      - isin
+      - price
+    properties:
+      bondit_id:
+        type: integer
+        description: Bondit id
+        example: "123"
+        readOnly: true
+      isin:
+        type: string
+        description: ISIN identifier
+        example: "US123456789"
+        minLength: 1
+        maxLength: 20
+      price:
+        type: number
+        description: price
+        example: "100.1"
+        minLength: 1
+        maxLength: 20
 
 securityDefinitions:
   oauth2:
